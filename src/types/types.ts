@@ -26,3 +26,8 @@ export type CulturasPlantadas = {
   idSafra: string;
   cultura: string;
 };
+
+export type ActionRedux = {
+  type: string;
+  payload: any;
+};

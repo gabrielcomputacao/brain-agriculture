@@ -9,7 +9,7 @@ import {
 } from "./styled";
 import type { Produtor } from "../../types/types";
 
-export function AddPage() {
+export function ProducerPage() {
   const {
     handleSubmit,
     register,

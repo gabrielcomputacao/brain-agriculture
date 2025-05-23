@@ -3,7 +3,7 @@ import { Layout } from "./Layout.tsx";
 import { Producers } from "./pages/Producers/index.tsx";
 import { Farms } from "./pages/Farms/index.tsx";
 import { Dashboard } from "./pages/Dashboard/index.tsx";
-import { AddPage } from "./pages/Producers/addPage.tsx";
+import { ProducerPage } from "./pages/Producers/producerPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
           },
           {
             path: "add",
-            element: <AddPage />,
+            element: <ProducerPage />,
           },
         ],
       },

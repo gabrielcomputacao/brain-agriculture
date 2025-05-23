@@ -76,3 +76,10 @@ export const ButtonLinkAdd = styled(Link)`
   border-radius: 4px;
   display: inline-block;
 `;
+
+export const ContainerCards = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+`;
