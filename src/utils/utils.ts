@@ -9,4 +9,12 @@ export const itensMenu: ItemMenu[] = [
     link: "/farms",
     text: "Fazendas",
   },
+  {
+    link: "/harvest",
+    text: "Safras",
+  },
+  {
+    link: "/planted-culture",
+    text: "Culturas plantadas",
+  },
 ];

@@ -7,7 +7,9 @@ export const producersReducer = (state = initialState, action: ActionRedux) => {
   switch (action.type) {
     case ProducersActionTypes.GET:
       return [...initialState, ...action.payload];
+    case ProducersActionTypes.DELETE:
+      return state.filter((producer) => producer.id !== action.payload);
+    default:
+      return state;
   }
-
-  return state;
 };

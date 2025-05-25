@@ -1,33 +1,48 @@
 {
   "producers": [
     {
-      "id": "1",
-      "cpfCnpj": "a title",
-      "nome": ""
-    },
-    {
       "id": "12a7",
       "nome": "gabriel",
       "cpfCnpj": "12914402678"
+    },
+    {
+      "id": "1298",
+      "nome": "amigo234",
+      "cpfCnpj": "12914402678"
+    },
+    {
+      "id": "4b2e",
+      "nome": "bong",
+      "cpfCnpj": "12333333"
     }
   ],
   "farms": [
     {
-      "id": "1",
-      "nome": "",
-      "cidade": "",
-      "estado": "",
-      "areaTotal": "",
-      "areaAgricultavel": "",
-      "areaVegetacao": "",
-      "safra": ""
+      "id": "3b03",
+      "idProdutor": "12a7",
+      "nome": "test",
+      "cidade": "test",
+      "estado": "test",
+      "areaTotal": "test",
+      "areaAgricultavel": "test",
+      "areaVegetacao": "test"
+    },
+    {
+      "id": "c3ec",
+      "idProdutor": "4b2e",
+      "nome": "test2",
+      "cidade": "text3",
+      "estado": "teste2",
+      "areaTotal": "20",
+      "areaAgricultavel": "30",
+      "areaVegetacao": "40"
     }
   ],
   "safra": [
     {
-      "id": "",
-      "idFazenda": "",
-      "anoSafra": ""
+      "id": "35f8",
+      "idFazenda": "c3ec",
+      "anoSafra": "safra2022"
     }
   ],
   "cultura": [
@@ -35,6 +50,12 @@
       "id": "",
       "idSafra": "",
       "cultura": ""
+    },
+    {
+      "id": "7c45",
+      "idFazenda": "c3ec",
+      "idSafra": "35f8",
+      "cultura": "arroz"
     }
   ]
 }

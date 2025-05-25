@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import {
-  ButtonLinkAdd,
-  ContainerCards,
-  ContainerProducers,
-  ContentFormProducers,
-} from "./styled";
+import { ButtonLinkAdd, ContainerCards } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { ProducersActionTypes } from "../../redux/producers/actionsTypes";
 import { Card } from "../../components/card";
+import { getProducers } from "../../services/getProducers";
+import { ContainerContent, Content } from "../../components/shared/styled";
 
 export function Producers() {
   const listProducers = useSelector(
@@ -16,25 +13,13 @@ export function Producers() {
   );
   const dispatch = useDispatch();
 
-  async function getProducers() {
-    try {
-      const response = await fetch("http://localhost:3000/producers");
-      const dataObject = await response.json();
-
-      dispatch({
-        type: ProducersActionTypes.GET,
-        payload: dataObject,
-      });
-    } catch (error) {}
-  }
-
   useEffect(() => {
-    getProducers();
+    getProducers(dispatch, ProducersActionTypes.GET);
   }, []);
 
   return (
-    <ContainerProducers>
-      <ContentFormProducers>
+    <ContainerContent>
+      <Content>
         <ButtonLinkAdd to={"/producers/add"}>Adicionar produtor</ButtonLinkAdd>
 
         {listProducers.length > 0 && (
@@ -50,7 +35,7 @@ export function Producers() {
             })}
           </ContainerCards>
         )}
-      </ContentFormProducers>
-    </ContainerProducers>
+      </Content>
+    </ContainerContent>
   );
 }

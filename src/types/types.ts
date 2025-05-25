@@ -17,12 +17,12 @@ export type Produtor = {
 };
 
 export type Safra = {
-  id: string;
+  id?: string;
   idFazenda: string;
   anoSafra: string;
 };
 export type CulturasPlantadas = {
-  id: string;
+  id?: string;
   idSafra: string;
   cultura: string;
 };

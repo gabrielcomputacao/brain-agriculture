@@ -12,6 +12,16 @@ export const ContainerCard = styled.div`
 `;
 export const ContentCard = styled.div`
   display: flex;
+
+  span {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-left: 10px;
+  }
 `;
 export const ContentCardButtons = styled.div`
   display: flex;
