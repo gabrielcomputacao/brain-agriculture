@@ -10,9 +10,11 @@ Para o gerenciamento de dados fiz uso do redux implementando o pattern observabl
 
 ## Rodar Projeto
 
-Primeiro rode o backend que foi feito com json server depois rode o front end, o backend virá sem dados iniciais
+Primeiro rode o backend que foi feito com json server depois rode o front end.
 
 ### Rodar json-server
+
+tenha o node e npm instalado para rodar o comando npx
 
 entrar na pasta mock
 
@@ -24,10 +26,12 @@ npx json-server db.json
 
 clonar o projeto
 
-yarn install
+yarn install ou npm install
 
-yarn dev
+yarn dev ou npm run dev
 
 ### Rodar Tests
+
+Configurei os tests no projeto, mas não consegui fazer uma cobertura desejavel, acabei ficando sem tempo. Mas sempre prezo pelos test e gosto de estabelecer boa cobertura nos testes. Peço desculpas.
 
 yarn test

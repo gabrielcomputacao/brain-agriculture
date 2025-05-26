@@ -7,7 +7,10 @@ interface IMessageProps {
 
 export function Message({ text, status }: IMessageProps) {
   return (
-    <ContainerMessage bgColor={status === "success" ? "green" : "red"}>
+    <ContainerMessage
+      data-testid="msg"
+      bgColor={status === "success" ? "green" : "red"}
+    >
       <p>{text}</p>
     </ContainerMessage>
   );
