@@ -1,3 +1,5 @@
 export const PlantedCultureActionTypes = {
-  GET: "plantedCulture/get",
+  POST: "plantedCulture/post",
+  ADD: "plantedCulture/add",
+  DELETE: "plantedCulture/delete",
 };

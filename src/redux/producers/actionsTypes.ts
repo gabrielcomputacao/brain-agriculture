@@ -1,4 +1,4 @@
 export const ProducersActionTypes = {
-  GET: "producers/get",
+  POST: "producers/post",
   DELETE: "producers/delete",
 };

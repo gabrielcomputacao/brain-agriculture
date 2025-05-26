@@ -1,4 +1,5 @@
 export const FarmsActionTypes = {
-  GET: "farms/get",
+  POST: "farms/post",
   ADD: "farms/add",
+  DELETE: "farms/delete",
 };

@@ -33,34 +33,34 @@ export function groupDataFarmsByGround(array: Propriedade[]) {
     const ground = Number(item.areaVegetacao) + Number(item.areaAgricultavel);
 
     if (ground <= 10) {
-      if (acc["Menor que 10"]) {
-        acc["Menor que 10"] += acc["Menor que 10"]++;
+      if (acc["Menor ou igual a 10"]) {
+        acc["Menor ou igual a 10"] += acc["Menor ou igual a 10"]++;
       } else {
-        acc["Menor que 10"] = 1;
+        acc["Menor ou igual a 10"] = 1;
       }
     } else if (ground > 10 && ground <= 20) {
-      if (acc["Menor que 20"]) {
-        acc["Menor que 20"] += acc["Menor que 20"]++;
+      if (acc["Menor ou igual a 20"]) {
+        acc["Menor ou igual a 20"] += acc["Menor ou igual a 20"]++;
       } else {
-        acc["Menor que 20"] = 1;
+        acc["Menor ou igual a 20"] = 1;
       }
     } else if (ground > 20 && ground <= 30) {
-      if (acc["Menor que 30"]) {
-        acc["Menor que 30"] += acc["Menor que 30"]++;
+      if (acc["Menor ou igual a 30"]) {
+        acc["Menor ou igual a 30"] += acc["Menor ou igual a 30"]++;
       } else {
-        acc["Menor que 30"] = 1;
+        acc["Menor ou igual a 30"] = 1;
       }
     } else if (ground > 30 && ground <= 40) {
-      if (acc["Menor que 40"]) {
-        acc["Menor que 40"] += acc["Menor que 40"]++;
+      if (acc["Menor ou igual a 40"]) {
+        acc["Menor ou igual a 40"] += acc["Menor ou igual a 40"]++;
       } else {
-        acc["Menor que 40"] = 1;
+        acc["Menor ou igual a 40"] = 1;
       }
     } else if (ground > 40 && ground <= 50) {
-      if (acc["Menor que 50"]) {
-        acc["Menor que 50"] += acc["Menor que 50"]++;
+      if (acc["Menor ou igual a 50"]) {
+        acc["Menor ou igual a 50"] += acc["Menor ou igual a 50"]++;
       } else {
-        acc["Menor que 50"] = 1;
+        acc["Menor ou igual a 50"] = 1;
       }
     } else {
       if (acc["Maior que 50"]) {
@@ -78,34 +78,34 @@ export function groupDataHectaresByGround(array: Propriedade[]) {
     const ground = Number(item.areaVegetacao) + Number(item.areaAgricultavel);
 
     if (ground <= 10) {
-      if (acc["Menor que 10"]) {
-        acc["Menor que 10"] += Number(item.areaTotal);
+      if (acc["Menor ou igual a 10"]) {
+        acc["Menor ou igual a 10"] += Number(item.areaTotal);
       } else {
-        acc["Menor que 10"] = Number(item.areaTotal) ?? 0;
+        acc["Menor ou igual a 10"] = Number(item.areaTotal) ?? 0;
       }
     } else if (ground > 10 && ground <= 20) {
-      if (acc["Menor que 20"]) {
-        acc["Menor que 20"] += Number(item.areaTotal);
+      if (acc["Menor ou igual a 20"]) {
+        acc["Menor ou igual a 20"] += Number(item.areaTotal);
       } else {
-        acc["Menor que 20"] = Number(item.areaTotal) ?? 0;
+        acc["Menor ou igual a 20"] = Number(item.areaTotal) ?? 0;
       }
     } else if (ground > 20 && ground <= 30) {
-      if (acc["Menor que 30"]) {
-        acc["Menor que 30"] += Number(item.areaTotal);
+      if (acc["Menor ou igual a 30"]) {
+        acc["Menor ou igual a 30"] += Number(item.areaTotal);
       } else {
-        acc["Menor que 30"] = Number(item.areaTotal) ?? 0;
+        acc["Menor ou igual a 30"] = Number(item.areaTotal) ?? 0;
       }
     } else if (ground > 30 && ground <= 40) {
-      if (acc["Menor que 40"]) {
-        acc["Menor que 40"] += Number(item.areaTotal);
+      if (acc["Menor ou igual a 40"]) {
+        acc["Menor ou igual a 40"] += Number(item.areaTotal);
       } else {
-        acc["Menor que 40"] = Number(item.areaTotal) ?? 0;
+        acc["Menor ou igual a 40"] = Number(item.areaTotal) ?? 0;
       }
     } else if (ground > 40 && ground <= 50) {
-      if (acc["Menor que 50"]) {
-        acc["Menor que 50"] += Number(item.areaTotal);
+      if (acc["Menor ou igual a 50"]) {
+        acc["Menor ou igual a 50"] += Number(item.areaTotal);
       } else {
-        acc["Menor que 50"] = Number(item.areaTotal) ?? 0;
+        acc["Menor ou igual a 50"] = Number(item.areaTotal) ?? 0;
       }
     } else {
       if (acc["Maior que 50"]) {
@@ -125,7 +125,7 @@ export function groupDataFarmsByPlantedCulture(
 ) {
   return array.reduce((acc: any, item) => {
     const filterFarmsWithCulture = arrayCulture.filter(
-      (value) => value.idFazenda === item.id
+      (value) => value.idFazenda === item.nome
     );
 
     filterFarmsWithCulture.map((data) => {
@@ -146,7 +146,7 @@ export function groupDataHectaresByPlantedCulture(
 ) {
   return array.reduce((acc: any, item) => {
     const filterFarmsWithCulture = arrayCulture.filter(
-      (value) => value.idFazenda === item.id
+      (value) => value.idFazenda === item.nome
     );
 
     filterFarmsWithCulture.map((data) => {

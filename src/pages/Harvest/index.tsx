@@ -17,7 +17,7 @@ import { getFarms } from "../../services/getFarms";
 import { FarmsActionTypes } from "../../redux/farms/actionsTypes";
 import { Message } from "../../components/message";
 
-export function Harvest() {
+export default function Harvest() {
   const {
     register,
     handleSubmit,
@@ -35,12 +35,6 @@ export function Harvest() {
     status: "success",
   });
 
-  useEffect(() => {
-    if (listFarms.length === 0) {
-      getFarms(dispatch, FarmsActionTypes.GET);
-    }
-  }, []);
-
   async function onSubmit(data: Safra) {
     const response = await fetch("http://localhost:3000/safra", {
       method: "POST",
@@ -57,11 +51,6 @@ export function Harvest() {
         status: "success",
       });
 
-      dispatch({
-        type: FarmsActionTypes.ADD,
-        payload: data,
-      });
-
       resetField("anoSafra");
     }
   }
@@ -76,6 +65,12 @@ export function Harvest() {
     };
   }, [openObjectMessage.isOpen]);
 
+  useEffect(() => {
+    if (listFarms.length === 0) {
+      getFarms(dispatch, FarmsActionTypes.POST);
+    }
+  }, []);
+
   return (
     <Container>
       {openObjectMessage.isOpen && (
@@ -89,15 +84,17 @@ export function Harvest() {
           <h2>Cadastre a Safra</h2>
           <ContainerForm onSubmit={handleSubmit(onSubmit)}>
             <ContentValuesForm>
-              <label htmlFor="idProdutor">Selecione uma fazenda</label>
+              <label htmlFor="idFazenda">Selecione uma fazenda</label>
               <SelectCustom
                 {...register("idFazenda", {
                   required: "A fazenda é obrigatória",
                 })}
               >
                 <option value=""></option>
-                {listFarms.map((value) => (
-                  <option value={value.id}>{value.nome}</option>
+                {listFarms.map((value, index) => (
+                  <option key={`${index}_farm_safra`} value={value.nome}>
+                    {value.nome}
+                  </option>
                 ))}
               </SelectCustom>
               {errors.idFazenda && (

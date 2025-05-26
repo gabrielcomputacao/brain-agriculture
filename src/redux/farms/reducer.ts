@@ -6,9 +6,11 @@ const initialState: Propriedade[] = [];
 export const farmsReducer = (state = initialState, action: ActionRedux) => {
   switch (action.type) {
     case FarmsActionTypes.ADD:
-      return [...initialState, action.payload];
-    case FarmsActionTypes.GET:
-      return [...initialState, ...action.payload];
+      return [...state, action.payload];
+    case FarmsActionTypes.POST:
+      return [...state, ...action.payload];
+    case FarmsActionTypes.DELETE:
+      return state.filter((producer) => producer.id !== action.payload);
 
     default:
       return state;

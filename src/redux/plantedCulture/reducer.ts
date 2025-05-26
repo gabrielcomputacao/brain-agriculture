@@ -8,8 +8,12 @@ export const plantedCultureReducer = (
   action: ActionRedux
 ) => {
   switch (action.type) {
-    case PlantedCultureActionTypes.GET:
-      return [...initialState, ...action.payload];
+    case PlantedCultureActionTypes.POST:
+      return [...state, ...action.payload];
+    case PlantedCultureActionTypes.ADD:
+      return [...state, action.payload];
+    case PlantedCultureActionTypes.DELETE:
+      return state.filter((producer) => producer.id !== action.payload);
     default:
       return state;
   }

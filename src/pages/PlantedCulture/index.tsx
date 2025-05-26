@@ -16,8 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { getFarms } from "../../services/getFarms";
 import { FarmsActionTypes } from "../../redux/farms/actionsTypes";
+import { PlantedCultureActionTypes } from "../../redux/plantedCulture/actionsTypes";
 
-export function PlantedCulture() {
+export default function PlantedCulture() {
   const {
     register,
     handleSubmit,
@@ -38,12 +39,6 @@ export function PlantedCulture() {
     text: "",
     status: "success",
   });
-
-  useEffect(() => {
-    if (listFarms.length === 0) {
-      getFarms(dispatch, FarmsActionTypes.GET);
-    }
-  }, []);
 
   async function getHarvest() {
     try {
@@ -71,6 +66,11 @@ export function PlantedCulture() {
         status: "success",
       });
 
+      dispatch({
+        type: PlantedCultureActionTypes.ADD,
+        payload: data,
+      });
+
       resetField("cultura");
     }
   }
@@ -82,6 +82,12 @@ export function PlantedCulture() {
       } catch (error) {}
     }
   }, [idFarm]);
+
+  useEffect(() => {
+    if (listFarms.length === 0) {
+      getFarms(dispatch, FarmsActionTypes.POST);
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -114,7 +120,7 @@ export function PlantedCulture() {
               >
                 <option value=""></option>
                 {listFarms.map((value, index) => (
-                  <option key={index} value={value.id}>
+                  <option key={`${index}_farms`} value={value.nome}>
                     {value.nome}
                   </option>
                 ))}
@@ -123,22 +129,27 @@ export function PlantedCulture() {
                 <span>{`${errors?.idFazenda?.message}.`}</span>
               )}
             </ContentValuesForm>
-            <ContentValuesForm>
-              <label htmlFor="idSafra">Selecione uma Safra</label>
-              <SelectCustom
-                {...register("idSafra", {
-                  required: "A Safra é obrigatória",
-                })}
-              >
-                <option value=""></option>
-                {selectSafra.map((value, index) => (
-                  <option key={index} value={value.id}>
-                    {value.anoSafra}
-                  </option>
-                ))}
-              </SelectCustom>
-              {errors.idSafra && <span>{`${errors?.idSafra?.message}.`}</span>}
-            </ContentValuesForm>
+
+            {selectSafra.length > 0 && (
+              <ContentValuesForm>
+                <label htmlFor="idSafra">Selecione uma Safra</label>
+                <SelectCustom
+                  {...register("idSafra", {
+                    required: "A Safra é obrigatória",
+                  })}
+                >
+                  <option value=""></option>
+                  {selectSafra.map((value, index) => (
+                    <option key={`${index}_safra`} value={value.id}>
+                      {value.anoSafra}
+                    </option>
+                  ))}
+                </SelectCustom>
+                {errors.idSafra && (
+                  <span>{`${errors?.idSafra?.message}.`}</span>
+                )}
+              </ContentValuesForm>
+            )}
             <ContentValuesForm>
               <label htmlFor="cultura">Nome da cultura plantada</label>
               <input

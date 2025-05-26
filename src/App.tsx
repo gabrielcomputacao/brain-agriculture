@@ -1,11 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "./Layout.tsx";
-import { Producers } from "./pages/Producers/index.tsx";
-import { Farms } from "./pages/Farms/index.tsx";
 import { Dashboard } from "./pages/Dashboard/index.tsx";
-import { ProducerPage } from "./pages/Producers/producerPage.tsx";
-import { Harvest } from "./pages/Harvest/index.tsx";
-import { PlantedCulture } from "./pages/PlantedCulture/index.tsx";
+import { Layout } from "./Layout.tsx";
+import { lazy, Suspense } from "react";
+import { SuspenseContainer } from "./components/suspenseContainer/index.tsx";
+
+const Producers = lazy(() => import("./pages/Producers/index.tsx"));
+const Farms = lazy(() => import("./pages/Farms/index.tsx"));
+const ProducerPage = lazy(() => import("./pages/Producers/producerPage.tsx"));
+const Harvest = lazy(() => import("./pages/Harvest/index.tsx"));
+const PlantedCulture = lazy(() => import("./pages/PlantedCulture/index.tsx"));
 
 const router = createBrowserRouter([
   {
@@ -18,32 +21,56 @@ const router = createBrowserRouter([
       },
       {
         path: "farms",
-        element: <Farms />,
+        element: (
+          <Suspense fallback={<SuspenseContainer />}>
+            <Farms />
+          </Suspense>
+        ),
       },
       {
         path: "producers",
         children: [
           {
             index: true,
-            element: <Producers />,
+            element: (
+              <Suspense fallback={<SuspenseContainer />}>
+                <Producers />,
+              </Suspense>
+            ),
           },
           {
             path: "add",
-            element: <ProducerPage />,
+            element: (
+              <Suspense fallback={<SuspenseContainer />}>
+                <ProducerPage />,
+              </Suspense>
+            ),
           },
           {
             path: "edit/:id",
-            element: <ProducerPage />,
+            element: (
+              <Suspense fallback={<SuspenseContainer />}>
+                <ProducerPage />,
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "harvest",
-        element: <Harvest />,
+        element: (
+          <Suspense fallback={<SuspenseContainer />}>
+            <Harvest />,
+          </Suspense>
+        ),
       },
       {
         path: "planted-culture",
-        element: <PlantedCulture />,
+        element: (
+          <Suspense fallback={<SuspenseContainer />}>
+            <PlantedCulture />,
+          </Suspense>
+        ),
       },
     ],
   },

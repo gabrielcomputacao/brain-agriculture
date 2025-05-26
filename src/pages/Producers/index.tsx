@@ -7,14 +7,16 @@ import { CardProducer } from "../../components/cardProducer";
 import { getProducers } from "../../services/getProducers";
 import { ContainerContent, Content } from "../../components/shared/styled";
 
-export function Producers() {
+export default function Producers() {
   const listProducers = useSelector(
     (rootReducer: RootState) => rootReducer.producersReducer
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducers(dispatch, ProducersActionTypes.GET);
+    if (listProducers.length === 0) {
+      getProducers(dispatch, ProducersActionTypes.POST);
+    }
   }, []);
 
   return (

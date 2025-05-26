@@ -9,6 +9,7 @@ import {
   ContainerChart,
   ContainerCharts,
   ContainerDashboard,
+  ContainerMessageNotData,
 } from "./styled";
 import type { Propriedade } from "../../types/types";
 import { StateCharts } from "../../components/charts/StateChart";
@@ -65,14 +66,14 @@ export function Dashboard() {
 
   useEffect(() => {
     if (listFarms.length === 0) {
-      getFarms(dispatch, FarmsActionTypes.GET);
+      getFarms(dispatch, FarmsActionTypes.POST);
     }
-  }, []);
+  }, [listFarms]);
   useEffect(() => {
     if (listPlantedCulture.length === 0) {
-      getPlantedCulture(dispatch, PlantedCultureActionTypes.GET);
+      getPlantedCulture(dispatch, PlantedCultureActionTypes.POST);
     }
-  }, []);
+  }, [listPlantedCulture]);
 
   return (
     <ContainerDashboard>
@@ -126,12 +127,12 @@ export function Dashboard() {
           </ContainerChart>
         </>
       ) : (
-        <div>
+        <ContainerMessageNotData>
           <p>
-            Ainda não tem dados para mostrar os gráficos.Cadastre um produtor
+            Ainda não tem dados para mostrar os gráficos. Cadastre um produtor
             depois cadastre uma fazenda.
           </p>
-        </div>
+        </ContainerMessageNotData>
       )}
     </ContainerDashboard>
   );

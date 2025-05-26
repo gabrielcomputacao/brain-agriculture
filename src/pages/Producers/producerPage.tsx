@@ -14,7 +14,7 @@ import {
 } from "../../components/shared/styled";
 import { formatCpfCnpj, validateCpfCnpj } from "../../utils/validationCpfCnpj";
 
-export function ProducerPage() {
+export default function ProducerPage() {
   const {
     handleSubmit,
     register,

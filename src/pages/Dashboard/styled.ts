@@ -41,3 +41,13 @@ export const ContainerChart = styled.div`
     color: rgb(207, 58, 58);
   }
 `;
+
+export const ContainerMessageNotData = styled.div`
+  display: flex;
+
+  margin-top: 40px;
+
+  p {
+    font-size: 18px;
+  }
+`;

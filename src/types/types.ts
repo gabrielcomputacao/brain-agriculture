@@ -1,5 +1,5 @@
 export type Propriedade = {
-  id: string;
+  id?: string;
   idProdutor: string;
   nome: string;
   cidade: string;

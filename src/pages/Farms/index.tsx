@@ -17,7 +17,7 @@ import {
   SelectCustom,
 } from "../../components/shared/styled";
 
-export function Farms() {
+export default function Farms() {
   const {
     register,
     formState: { errors },
@@ -38,7 +38,7 @@ export function Farms() {
 
   useEffect(() => {
     if (listProducers.length === 0) {
-      getProducers(dispatch, ProducersActionTypes.GET);
+      getProducers(dispatch, ProducersActionTypes.POST);
     }
   }, []);
 
