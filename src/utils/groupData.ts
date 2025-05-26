@@ -5,9 +5,9 @@ export function groupDataHectaresByState(array: Propriedade[]) {
     const state = item.estado;
 
     if (acc[state]) {
-      acc[state] += item.areaTotal;
+      acc[state] += Number(item.areaTotal);
     } else {
-      acc[state] = item.areaTotal ?? 0;
+      acc[state] = Number(item.areaTotal) ?? 0;
     }
 
     return acc;
@@ -151,9 +151,9 @@ export function groupDataHectaresByPlantedCulture(
 
     filterFarmsWithCulture.map((data) => {
       if (acc[data.cultura]) {
-        acc[data.cultura] += item.areaTotal;
+        acc[data.cultura] += Number(item.areaTotal);
       } else {
-        acc[data.cultura] = item.areaTotal ?? 0;
+        acc[data.cultura] = Number(item.areaTotal) ?? 0;
       }
     });
 
