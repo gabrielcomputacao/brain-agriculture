@@ -5,7 +5,7 @@ export const ContainerMenu = styled.div`
   width: 100%;
 `;
 export const ContentMenu = styled.div`
-  width: 100%;
+  width: 99%;
   display: flex;
   flex-direction: column;
   border-top: 1px solid #c3c3c3;

@@ -1,21 +1,43 @@
 import styled from "styled-components";
 
 export const ContainerDashboard = styled.div`
-  display: flex;
   width: 100%;
-  height: 100vh;
 `;
 
-export const ContainerMenu = styled.div`
-  width: 20%;
-  border-right: 1px solid #292929;
+export const ContainerCards = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  background-color: #ececec;
+  gap: 20px;
+  flex-wrap: wrap;
+`;
 
-  h2 {
-    text-align: center;
-    padding: 20px;
-    font-size: 32px;
+export const ContainerCharts = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+`;
+
+export const ContainerChart = styled.div`
+  padding: 20px;
+  border: 1px solid #c3c3c3;
+  border-radius: 4px;
+  max-width: 70%;
+  margin-top: 40px;
+
+  @media (max-width: 1050px) {
+    max-width: 100%;
+  }
+
+  h3 {
+    font-size: 26px;
+    color: green;
+    margin-bottom: 40px;
+  }
+
+  h4 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: rgb(207, 58, 58);
   }
 `;

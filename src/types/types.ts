@@ -4,9 +4,9 @@ export type Propriedade = {
   nome: string;
   cidade: string;
   estado: string;
-  areaTotal: string;
-  areaAgricultavel: string;
-  areaVegetacao: string;
+  areaTotal: number;
+  areaAgricultavel: number;
+  areaVegetacao: number;
   safra: Safra;
 };
 
@@ -23,6 +23,7 @@ export type Safra = {
 };
 export type CulturasPlantadas = {
   id?: string;
+  idFazenda: string;
   idSafra: string;
   cultura: string;
 };

@@ -22,6 +22,7 @@ export function Farms() {
     register,
     formState: { errors },
     handleSubmit,
+    setError,
     reset,
   } = useForm<Propriedade>();
 
@@ -42,6 +43,20 @@ export function Farms() {
   }, []);
 
   async function onSubmit(data: Propriedade) {
+    const isValidArea =
+      Number(data.areaAgricultavel) + Number(data.areaVegetacao) >
+      Number(data.areaTotal)
+        ? false
+        : true;
+
+    if (!isValidArea) {
+      setError("areaTotal", {
+        message:
+          "Área total não pode ser menor que a soma da área agricultável mais a área de vegetação",
+      });
+      return;
+    }
+
     const response = await fetch("http://localhost:3000/farms", {
       method: "POST",
       headers: {
@@ -101,8 +116,10 @@ export function Farms() {
               })}
             >
               <option value=""></option>
-              {listProducers.map((value) => (
-                <option value={value.id}>{value.nome}</option>
+              {listProducers.map((value, index) => (
+                <option key={index} value={value.id}>
+                  {value.nome}
+                </option>
               ))}
             </SelectCustom>
             {errors.idProdutor && (
@@ -130,10 +147,39 @@ export function Farms() {
 
           <ContentValuesForm>
             <label htmlFor="estado">Estado</label>
-            <input
-              type="text"
+            <SelectCustom
               {...register("estado", { required: "O estado é obrigatório" })}
-            />
+            >
+              <option value="">Selecione um estado</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </SelectCustom>
+
             {errors.estado && <span>{`${errors?.estado?.message}.`}</span>}
           </ContentValuesForm>
 
@@ -143,7 +189,12 @@ export function Farms() {
               type="text"
               {...register("areaTotal", {
                 required: "A área total é obrigatória",
+                pattern: {
+                  value: /^[0-9]*[.]?[0-9]+$/,
+                  message: "Digite um número válido",
+                },
               })}
+              placeholder="Digite a área em hectares."
             />
             {errors.areaTotal && (
               <span>{`${errors?.areaTotal?.message}.`}</span>
@@ -156,7 +207,12 @@ export function Farms() {
               type="text"
               {...register("areaAgricultavel", {
                 required: "A área agricultável é obrigatória",
+                pattern: {
+                  value: /^[0-9]*[.]?[0-9]+$/,
+                  message: "Digite um número válido",
+                },
               })}
+              placeholder="Digite a área em hectares."
             />
             {errors.areaAgricultavel && (
               <span>{`${errors?.areaAgricultavel?.message}.`}</span>
@@ -169,7 +225,12 @@ export function Farms() {
               type="text"
               {...register("areaVegetacao", {
                 required: "A área de vegetação é obrigatória",
+                pattern: {
+                  value: /^[0-9]*[.]?[0-9]+$/,
+                  message: "Digite um número válido",
+                },
               })}
+              placeholder="Digite a área em hectares."
             />
             {errors.areaVegetacao && (
               <span>{`${errors?.areaVegetacao?.message}.`}</span>

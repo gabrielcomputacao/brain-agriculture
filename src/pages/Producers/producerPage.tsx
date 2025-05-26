@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { Produtor } from "../../types/types";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import {
@@ -12,23 +12,38 @@ import {
   ContentButton,
   ContentValuesForm,
 } from "../../components/shared/styled";
+import { formatCpfCnpj, validateCpfCnpj } from "../../utils/validationCpfCnpj";
 
 export function ProducerPage() {
   const {
     handleSubmit,
     register,
     setValue,
+    setError,
     formState: { errors },
+    watch,
   } = useForm<Produtor>();
 
-  const navigate = useNavigate();
+  const [firstRender, setFirstRender] = useState(true);
 
+  const navigate = useNavigate();
+  const dataCpfCnpj = watch("cpfCnpj");
   const { id } = useParams();
   const listProducers = useSelector(
     (rootReducer: RootState) => rootReducer.producersReducer
   );
 
   async function onSubmit(data: Produtor) {
+    const isValidCpfCnpj = validateCpfCnpj(data.cpfCnpj);
+
+    if (!isValidCpfCnpj) {
+      setError("cpfCnpj", {
+        message: "Cpf/Cnpj inválido",
+      });
+
+      return;
+    }
+
     if (id) {
       try {
         const response = await fetch(`http://localhost:3000/producers/${id}`, {
@@ -74,6 +89,15 @@ export function ProducerPage() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!firstRender) {
+      const formatValue = formatCpfCnpj(dataCpfCnpj ?? "");
+      setValue("cpfCnpj", formatValue);
+    }
+
+    setFirstRender(false);
+  }, [dataCpfCnpj]);
+
   return (
     <ContainerContent>
       <Content>
@@ -91,7 +115,10 @@ export function ProducerPage() {
             <label htmlFor="cpfCnpj">CPF/CNPJ Produtor</label>
             <input
               type="text"
-              {...register("cpfCnpj", { required: "O cpfCnpj é obrigatório" })}
+              maxLength={18}
+              {...register("cpfCnpj", {
+                required: "O cpfCnpj é obrigatório",
+              })}
             />
             {errors.cpfCnpj && <span>{`${errors?.cpfCnpj?.message}.`}</span>}
           </ContentValuesForm>

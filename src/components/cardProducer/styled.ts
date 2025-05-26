@@ -9,6 +9,13 @@ export const ContainerCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  @media (max-width: 400px) {
+    min-width: 0;
+  }
 `;
 export const ContentCard = styled.div`
   display: flex;

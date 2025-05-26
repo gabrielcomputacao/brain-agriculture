@@ -17,7 +17,7 @@ interface ICardProps {
   id: string;
 }
 
-export function Card({ nome, cpfCnpj, id }: ICardProps) {
+export function CardProducer({ nome, cpfCnpj, id }: ICardProps) {
   const [onModalConfirmaiton, setOnModalConfirmaiton] = useState(false);
 
   const dispatch = useDispatch();

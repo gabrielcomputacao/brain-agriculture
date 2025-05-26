@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
 `;
 export const ContainerContent = styled.div`
   display: flex;
@@ -16,9 +15,19 @@ export const Content = styled.div`
   min-width: 800px;
   border-radius: 4px;
 
+  @media (max-width: 1050px) {
+    min-width: 500px;
+  }
+
+  @media (max-width: 550px) {
+    min-width: 0;
+    width: auto;
+  }
+
   h2 {
     text-align: center;
     font-size: 28px;
+    margin-bottom: 20px;
   }
 `;
 

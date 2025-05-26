@@ -20,4 +20,5 @@ export const ContainerCards = styled.div`
   gap: 20px;
   align-items: center;
   margin-top: 20px;
+  flex-wrap: wrap;
 `;

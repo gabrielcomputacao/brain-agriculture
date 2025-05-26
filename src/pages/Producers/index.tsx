@@ -3,7 +3,7 @@ import { ButtonLinkAdd, ContainerCards } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { ProducersActionTypes } from "../../redux/producers/actionsTypes";
-import { Card } from "../../components/card";
+import { CardProducer } from "../../components/cardProducer";
 import { getProducers } from "../../services/getProducers";
 import { ContainerContent, Content } from "../../components/shared/styled";
 
@@ -26,7 +26,7 @@ export function Producers() {
           <ContainerCards>
             {listProducers.map((producer) => {
               return (
-                <Card
+                <CardProducer
                   id={producer.id}
                   cpfCnpj={producer.cpfCnpj}
                   nome={producer.nome}
