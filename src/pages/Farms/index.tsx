@@ -65,6 +65,8 @@ export default function Farms() {
       body: JSON.stringify(data),
     });
 
+    const dataResponse = await response.json();
+
     if (response.status === 200 || response.status === 201) {
       setOpenObjectMessage({
         isOpen: true,
@@ -74,7 +76,7 @@ export default function Farms() {
 
       dispatch({
         type: FarmsActionTypes.ADD,
-        payload: data,
+        payload: dataResponse,
       });
 
       reset();

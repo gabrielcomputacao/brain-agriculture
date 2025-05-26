@@ -51,11 +51,11 @@ export function CardProducer({ nome, cpfCnpj, id }: ICardProps) {
         if (responseFarms.status === 200 || responseFarms.status === 201) {
           dispatch({
             type: FarmsActionTypes.DELETE,
-            payload: id,
+            payload: item.id,
           });
 
           const responseSafra = await fetch(
-            `http://localhost:3000/safra?idFazenda=${item.nome}`
+            `http://localhost:3000/safra?idFazenda=${item.id}`
           );
 
           const dataSafra = await responseSafra.json();
@@ -92,7 +92,7 @@ export function CardProducer({ nome, cpfCnpj, id }: ICardProps) {
                 ) {
                   dispatch({
                     type: PlantedCultureActionTypes.DELETE,
-                    payload: id,
+                    payload: culture.id,
                   });
                 }
               }

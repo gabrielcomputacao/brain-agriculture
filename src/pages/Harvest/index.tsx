@@ -92,7 +92,7 @@ export default function Harvest() {
               >
                 <option value=""></option>
                 {listFarms.map((value, index) => (
-                  <option key={`${index}_farm_safra`} value={value.nome}>
+                  <option key={`${index}_farm_safra`} value={value.id}>
                     {value.nome}
                   </option>
                 ))}

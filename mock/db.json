@@ -1,6 +1,36 @@
 {
-  "producers": [],
-  "farms": [],
-  "safra": [],
-  "cultura": []
+  "producers": [
+    {
+      "id": "ea20",
+      "nome": "gabriel",
+      "cpfCnpj": "129.144.026-78"
+    }
+  ],
+  "farms": [
+    {
+      "id": "86ce",
+      "idProdutor": "ea20",
+      "nome": "Terra",
+      "cidade": "Divinopolis",
+      "estado": "MG",
+      "areaTotal": "20",
+      "areaAgricultavel": "10",
+      "areaVegetacao": "10"
+    }
+  ],
+  "safra": [
+    {
+      "id": "53ce",
+      "idFazenda": "86ce",
+      "anoSafra": "Safra 2022"
+    }
+  ],
+  "cultura": [
+    {
+      "id": "2e7f",
+      "idFazenda": "86ce",
+      "idSafra": "53ce",
+      "cultura": "milho"
+    }
+  ]
 }

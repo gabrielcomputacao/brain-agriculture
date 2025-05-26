@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import type { Produtor } from "../../types/types";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import {
   ButtonSubmit,
@@ -13,6 +13,7 @@ import {
   ContentValuesForm,
 } from "../../components/shared/styled";
 import { formatCpfCnpj, validateCpfCnpj } from "../../utils/validationCpfCnpj";
+import { ProducersActionTypes } from "../../redux/producers/actionsTypes";
 
 export default function ProducerPage() {
   const {
@@ -25,7 +26,7 @@ export default function ProducerPage() {
   } = useForm<Produtor>();
 
   const [firstRender, setFirstRender] = useState(true);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const dataCpfCnpj = watch("cpfCnpj");
   const { id } = useParams();
@@ -54,7 +55,14 @@ export default function ProducerPage() {
           body: JSON.stringify({ id, ...data }),
         });
 
+        const objectData = await response.json();
+
         if (response.status === 200) {
+          dispatch({
+            type: ProducersActionTypes.PATCH,
+            payload: objectData,
+          });
+
           navigate("/producers");
         } else {
         }
@@ -71,9 +79,15 @@ export default function ProducerPage() {
           body: JSON.stringify(data),
         });
 
+        const dataResponse = await response.json();
+
         if (response.status === 200 || response.status === 201) {
+          dispatch({
+            type: ProducersActionTypes.ADD,
+            payload: dataResponse,
+          });
+
           navigate("/producers");
-        } else {
         }
       } catch (err) {
         throw new Error(`Algo de errado. Erro: ${err}`);

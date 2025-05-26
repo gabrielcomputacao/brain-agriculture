@@ -125,7 +125,7 @@ export function groupDataFarmsByPlantedCulture(
 ) {
   return array.reduce((acc: any, item) => {
     const filterFarmsWithCulture = arrayCulture.filter(
-      (value) => value.idFazenda === item.nome
+      (value) => value.idFazenda === item.id
     );
 
     filterFarmsWithCulture.map((data) => {
@@ -146,7 +146,7 @@ export function groupDataHectaresByPlantedCulture(
 ) {
   return array.reduce((acc: any, item) => {
     const filterFarmsWithCulture = arrayCulture.filter(
-      (value) => value.idFazenda === item.nome
+      (value) => value.idFazenda === item.id
     );
 
     filterFarmsWithCulture.map((data) => {
